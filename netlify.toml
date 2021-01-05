@@ -1,0 +1,13 @@
+[build]
+  command = "yarn build"
+  functions = "functions"
+
+[dev]
+  command = "yarn develop"
+
+# The following redirect is intended for SPAs that handle
+# routing internally.
+[[redirects]]
+  from = "/app/*"
+  to = "/app/index.html"
+  status = 200
