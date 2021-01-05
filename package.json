@@ -17,6 +17,7 @@
   "dependencies": {
     "gatsby": "^2.29.2",
     "gatsby-plugin-create-client-paths": "^2.7.0",
+    "netlify-identity-widget": "^1.9.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
