@@ -1,11 +1,13 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
+const fetch = require('node-fetch')
 
 exports.handler = async (event, context) => {
   const {user} = context.clientContext
 
-  console.log(user)
+  console.log(process.env.HASURA_URL)
+  let result = null
   try {
-    const data = await fetch(process.env.HASURA_URL, {
+    result = await fetch(process.env.HASURA_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,13 +28,13 @@ exports.handler = async (event, context) => {
       }),
     }).then((res) => res.json())
   } catch (e) {
+    console.log(e)
     console.error(JSON.stringify(e), null, 2)
     return {
       statusCode: 500,
     }
   }
-
-  const stripe_customer_id = data.user[0].stripe_customer_id
+  const stripe_customer_id = result.data.user[0].stripe_customer_id
   const link = await stripe.billingPortal.sessions.create({
     customer: stripe_customer_id,
     return_url: process.env.URL,

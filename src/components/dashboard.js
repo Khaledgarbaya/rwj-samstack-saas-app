@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import {IdentityContext} from '../../identity-context'
-import {navigate} from 'gatsby'
 const Dash = () => {
   const {user} = useContext(IdentityContext)
   return (
@@ -13,9 +12,8 @@ const Dash = () => {
             headers: {
               Authorization: `Bearer ${user.token.access_token}`,
             },
-          })
-
-          navigate(link)
+          }).then((res) => res.json())
+          window.location.href = link
         }}
       >
         Manage Subscription
