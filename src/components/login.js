@@ -3,7 +3,7 @@ import {navigate} from 'gatsby'
 import {IdentityContext} from '../../identity-context'
 
 const Login = () => {
-  const {identity: netlifyIdentity} = useContext(IdentityContext)
+  const {netlifyIdentity} = useContext(IdentityContext)
   netlifyIdentity.on('login', (user) => {
     navigate('/app/dashboard')
   })
