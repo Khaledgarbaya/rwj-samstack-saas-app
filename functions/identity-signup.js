@@ -4,7 +4,7 @@ exports.handler = async (event) => {
   const {user} = JSON.parse(event.body)
 
   // create a stripe customer
-  const customer = stripe.customers.create({
+  const customer = await stripe.customers.create({
     email: user.email,
   })
 
