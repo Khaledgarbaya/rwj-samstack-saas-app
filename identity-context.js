@@ -21,7 +21,7 @@ const IdentityProvider = (props) => {
   })
 
   return (
-    <IdentityContext.Provider value={{identity: netlifyIdentity, user}}>
+    <IdentityContext.Provider value={{netlifyIdentity, user}}>
       {props.children}
     </IdentityContext.Provider>
   )
