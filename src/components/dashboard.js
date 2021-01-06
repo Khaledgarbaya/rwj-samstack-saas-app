@@ -8,7 +8,7 @@ const Dash = () => {
       <h1>Dashboard Page</h1>
       <button
         onClick={async () => {
-          const link = await fetch('/.nelitfy/functions/get-portal-url', {
+          const link = await fetch('/.netlify/functions/get-portal-url', {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${user.token.access_token}`,
