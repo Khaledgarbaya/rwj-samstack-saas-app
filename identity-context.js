@@ -10,10 +10,25 @@ const IdentityProvider = (props) => {
 
   React.useEffect(() => {
     netlifyIdentity.init({})
-  })
+  }, [])
   netlifyIdentity.on('login', (user) => {
     netlifyIdentity.close()
+    console.log('login', user)
     setUser(user)
+  })
+  netlifyIdentity.on('init', (user) => {
+    if (user) {
+      user.jwt(true).then((token) => {
+        const parts = token.split('.')
+        const currentUser = JSON.parse(atob(parts[1]))
+        setUser((user) => ({
+          ...user,
+          app_metadata: {
+            ...currentUser.app_metadata,
+          },
+        }))
+      })
+    }
   })
   netlifyIdentity.on('logout', () => {
     netlifyIdentity.close()
