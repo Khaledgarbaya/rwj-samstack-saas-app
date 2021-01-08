@@ -3,19 +3,19 @@ import {useQuery} from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import {IdentityContext} from '../../identity-context'
-const GET_CONTENT = gql`
-  query Content {
+const GET_CONTENT_QUERY = gql`
+  query GetContent {
     content {
-      title
       content
+      title
     }
   }
 `
 
 const Content = () => {
-  const {loading, error, data} = useQuery(GET_CONTENT)
+  const {loading, error, data} = useQuery(GET_CONTENT_QUERY)
 
-  if (error) return <span>error!</span>
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
   if (loading) return <span>loading...</span>
   return (
     <ul>

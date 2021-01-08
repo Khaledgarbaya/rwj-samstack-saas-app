@@ -41,3 +41,4 @@ const IdentityProvider = (props) => {
   )
 }
 exports.IdentityProvider = IdentityProvider
+exports.netlifyIdentity = netlifyIdentity
